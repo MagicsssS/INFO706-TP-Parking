@@ -1,0 +1,42 @@
+variables:
+  MAVEN_USER_HOME: $CI_PROJECT_DIR/.m2
+  MAVEN_OPTS: "-Dmaven.repo.local=$CI_PROJECT_DIR/.m2/repository"
+
+build:maven:
+  stage: build
+  image: maven:3.9.11-eclipse-temurin-11
+  script:
+    - mvn -B package
+  cache:
+    # dependencies cache
+    - key: $CI_COMMIT_REF_SLUG
+      fallback_keys:
+        - master-protected
+      paths:
+        - .m2/repository
+  artifacts:
+    paths:
+      - target/*.war
+
+
+build:wrapper:
+  stage: build
+  image: eclipse-temurin:11.0.28_6-jdk
+  script:
+    - ./mvnw -B package
+  cache:
+    # wrapper cache
+    - key:
+        files:
+          - .mvn/wrapper/maven-wrapper.properties
+      paths:
+        - .m2/wrapper
+    # dependencies cache
+    - key: $CI_COMMIT_REF_SLUG
+      fallback_keys:
+        - master-protected
+      paths:
+        - .m2/repository
+  artifacts:
+    paths:
+      - target/*.war
