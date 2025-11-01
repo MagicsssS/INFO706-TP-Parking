@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -32,7 +33,9 @@
 <div class="container">
     <h1>Ticket créé !</h1>
     <p>Numéro du ticket : ${ticket.id}</p>
-    <p>Date d'entrée : ${ticket.dateEntree}</p>
+    <p>Date d'entrée : 
+        <fmt:formatDate value="${dateEntreeUtil}" pattern="dd/MM/yyyy HH:mm:ss"/>
+    </p>
     <a href="borne2?ticketId=${ticket.id}">Payer ce ticket</a>
     <a href="index.jsp">Retour à l'accueil</a>
 </div>

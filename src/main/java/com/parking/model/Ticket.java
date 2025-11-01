@@ -45,10 +45,6 @@ public class Ticket {
         return dateSortie != null;
     }
 
-    public void setSorti(boolean sorti) {
-        this.sorti = sorti;
-    }
-
     public LocalDateTime getDateSortie() { 
         return dateSortie; 
     }
