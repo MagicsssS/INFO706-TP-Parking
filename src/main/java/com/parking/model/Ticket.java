@@ -14,7 +14,7 @@ public class Ticket {
 
     private LocalDateTime dateEntree;
     private boolean paye;
-    private boolean sorti;
+    private LocalDateTime dateSortie;
     
     @OneToMany(mappedBy = "ticket", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Paiement> paiements = new ArrayList<>();
@@ -22,7 +22,7 @@ public class Ticket {
     public Ticket() {
         this.dateEntree = LocalDateTime.now();
         this.paye = false;
-        this.sorti = false;
+        this.dateSortie = null;
     }
 
     public Long getId() {
@@ -42,11 +42,19 @@ public class Ticket {
     }
 
     public boolean isSorti() {
-        return sorti;
+        return dateSortie != null;
     }
 
     public void setSorti(boolean sorti) {
         this.sorti = sorti;
+    }
+
+    public LocalDateTime getDateSortie() { 
+        return dateSortie; 
+    }
+    
+    public void setDateSortie(LocalDateTime dateSortie) { 
+        this.dateSortie = dateSortie; 
     }
 
     public List<Paiement> getPaiements() {
