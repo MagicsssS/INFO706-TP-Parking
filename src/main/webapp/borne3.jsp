@@ -4,7 +4,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Borne 2 - Paiement</title>
+    <title>Borne 3 - Sortie</title>
     <style>
         body { font-family: Arial, sans-serif; background: #f0f2f5; padding: 20px; }
         .container {
@@ -18,40 +18,24 @@
         h2 { text-align: center; color: #333; }
         form { display: flex; flex-direction: column; gap: 10px; margin-top: 20px; }
         input[type="text"] { padding: 8px; border-radius: 4px; border: 1px solid #ccc; }
-        button { padding: 10px; border-radius: 4px; border: none; background: #28a745; color: white; cursor: pointer; font-size: 16px; }
-        button:hover { background: #218838; }
-        .message, pre {
-            margin-top: 15px;
-            padding: 10px;
-            background: #f8f9fa;
-            border-radius: 4px;
-            border: 1px solid #ddd;
-        }
+        button { padding: 10px; border-radius: 4px; border: none; background: #dc3545; color: white; cursor: pointer; font-size: 16px; }
+        button:hover { background: #c82333; }
+        p { margin-top: 15px; padding: 10px; background: #f8f9fa; border-radius: 4px; border: 1px solid #ddd; }
         a { display: inline-block; margin-top: 15px; text-decoration: none; color: #007bff; }
         a:hover { text-decoration: underline; }
     </style>
 </head>
 <body>
 <div class="container">
-    <h2>Borne 2 - Paiement</h2>
+    <h2>Borne 3 - Sortie</h2>
     <form method="post">
         <label>ID du ticket :</label>
         <input type="text" name="ticketId" required>
-        <label>Moyen de paiement :</label>
-        <select name="typePaiement" required>
-            <option value="CB">Carte Bancaire</option>
-            <option value="Espèces">Espèces</option>
-        </select>
-        <button type="submit" name="action" value="payer">Payer</button>
-        <button type="submit" name="action" value="justificatif">Justificatif</button>
+        <button type="submit">Sortir</button>
     </form>
 
     <c:if test="${not empty message}">
-        <div class="message">${message}</div>
-    </c:if>
-
-    <c:if test="${not empty justificatif}">
-        <pre>${justificatif}</pre>
+        <p>${message}</p>
     </c:if>
 
     <a href="index.jsp">Retour</a>

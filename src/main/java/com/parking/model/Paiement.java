@@ -12,22 +12,44 @@ public class Paiement {
 
     private LocalDateTime datePaiement;
     private double montant;
-    private String typePaiement; // CB, espèces
+    private String typePaiement;
 
     @ManyToOne
-    @JoinColumn(name = "ticket_id")
     private Ticket ticket;
 
     public Paiement() {
         this.datePaiement = LocalDateTime.now();
     }
 
-    public Long getId() { return id; }
-    public LocalDateTime getDatePaiement() { return datePaiement; }
-    public double getMontant() { return montant; }
-    public void setMontant(double montant) { this.montant = montant; }
-    public String getTypePaiement() { return typePaiement; }
-    public void setTypePaiement(String typePaiement) { this.typePaiement = typePaiement; }
-    public Ticket getTicket() { return ticket; }
-    public void setTicket(Ticket ticket) { this.ticket = ticket; }
+    public Long getId() {
+        return id;
+    }
+
+    public LocalDateTime getDatePaiement() {
+        return datePaiement;
+    }
+
+    public double getMontant() {
+        return montant;
+    }
+
+    public void setMontant(double montant) {
+        this.montant = montant;
+    }
+
+    public String getTypePaiement() {
+        return typePaiement;
+    }
+
+    public void setTypePaiement(String typePaiement) {
+        this.typePaiement = typePaiement;
+    }
+
+    public Ticket getTicket() {
+        return ticket;
+    }
+
+    public void setTicket(Ticket ticket) {
+        this.ticket = ticket;
+    }
 }

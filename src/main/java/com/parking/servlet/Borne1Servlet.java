@@ -9,7 +9,7 @@ import jakarta.servlet.http.*;
 import java.io.IOException;
 
 @WebServlet("/borne1")
-public class BorneEntreeServlet extends HttpServlet {
+public class Borne1Servlet extends HttpServlet {
 
     @EJB
     private TicketService ticketService;

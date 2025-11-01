@@ -13,28 +13,54 @@ public class Ticket {
     private Long id;
 
     private LocalDateTime dateEntree;
-
-    private LocalDateTime dateSortie;
-
     private boolean paye;
-
-    @OneToMany(mappedBy = "ticket", cascade = CascadeType.ALL, orphanRemoval = true)
+    private boolean sorti;
+    
+    @OneToMany(mappedBy = "ticket", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Paiement> paiements = new ArrayList<>();
 
     public Ticket() {
         this.dateEntree = LocalDateTime.now();
         this.paye = false;
+        this.sorti = false;
     }
 
-    public Long getId() { return id; }
-    public LocalDateTime getDateEntree() { return dateEntree; }
-    public LocalDateTime getDateSortie() { return dateSortie; }
-    public void setDateSortie(LocalDateTime dateSortie) { this.dateSortie = dateSortie; }
-    public boolean isPaye() { return paye; }
-    public void setPaye(boolean paye) { this.paye = paye; }
-    public List<Paiement> getPaiements() { return paiements; }
+    public Long getId() {
+        return id;
+    }
 
-    public double montantTotal() {
-        return paiements.stream().mapToDouble(Paiement::getMontant).sum();
+    public LocalDateTime getDateEntree() {
+        return dateEntree;
+    }
+
+    public boolean isPaye() {
+        return paye;
+    }
+
+    public void setPaye(boolean paye) {
+        this.paye = paye;
+    }
+
+    public boolean isSorti() {
+        return sorti;
+    }
+
+    public void setSorti(boolean sorti) {
+        this.sorti = sorti;
+    }
+
+    public List<Paiement> getPaiements() {
+        return paiements;
+    }
+
+    public void ajouterPaiement(Paiement paiement) {
+        paiements.add(paiement);
+        paiement.setTicket(this);
+        this.paye = true;
+    }
+
+    public Paiement getDernierPaiement() {
+        if (paiements.isEmpty()) return null;
+        return paiements.get(paiements.size() - 1);
     }
 }
