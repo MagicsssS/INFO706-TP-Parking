@@ -21,7 +21,7 @@
 
 - **Gestion des paiements :**  
   - Chaque paiement contient : montant, type (CB / espèces), et date.  
-  - Statuts d’un ticket :  
+  - Statut d’un ticket :  
     - Non payé  
     - Paiement expiré  
     - Valide  
